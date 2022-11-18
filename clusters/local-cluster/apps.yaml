@@ -9,4 +9,17 @@ spec:
   ref:
     branch: main
   url: https://github.com/talife/gitops-local-apps.git
-
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: apps
+  prune: true
+  wait: true
+  timeout: 5m0s
